@@ -8,19 +8,22 @@ mysqld is not here, you should build from source.
 *How to build mysqld*  
 https://dev.mysql.com/doc/refman/5.7/en/installing-source-distribution.html
 
+1. download boost 1.59.0: https://sourceforge.net/projects/boost/files/boost/1.59.0/
+1. get mysql-server source: `git clone https://github.com/mysql/mysql-server.git`
+1. checkout to 5.7: `git checkout 5.7`
 1. `mkdir build && cd build`
-2. Build release: `make -DCMAKE_INSTALL_PREFIX=release_out -DWITH_BOOST=~/code/boost_1_59_0 ..`  
-   Build debug: `make -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=debug_out -DWITH_BOOST=~/code/boost_1_59_0 ..`
-3. `make -j 8`
-4. `make install`
-5. all files has in `release_out` or `debug_out` dir
+1. Build release: `make -DCMAKE_INSTALL_PREFIX=release_out -DWITH_BOOST=/path/to/boost_1_59_0 ..`  
+   Build debug: `make -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=debug_out -DWITH_BOOST=/path/to/boost_1_59_0 ..`
+1. `make -j 8`
+. `make install`
+1. all files has in `release_out` or `debug_out` dir
 
 ### How to use
 
+1. `git clone `
+1. download the MySQL Community Server Compressed TAR Archive from [oracle](https://downloads.mysql.com/archives/community/), or build yourself.
+1. uncompress the package and mv it to mysqld.
 1. `tar -zxvf demo.tgz`
-2. build or download the mysql release|debug file: `mysql-5.7.30` and `5.7.30-debug`
-3. `mkdir mysqld`
-4. `mv mysql-5.7.30 mysqld`, `mv mysql-5.7.30-debug mysqld`
-5. `deploy_mysql.sh debug test 3307`
+1. `deploy_mysql.sh debug test 3307`
 
 connect to mysql: `mysql -h127.0.0.1 -uroot -P3307 -p123456`

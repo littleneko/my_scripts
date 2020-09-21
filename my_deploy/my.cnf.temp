@@ -1,0 +1,53 @@
+[mysql]
+port	= #port#
+socket	= #base_dir#/#instance#/mysql.sock
+
+[mysqld]
+basedir							= #base_dir#/mysqld/#mysqld#
+plugin-dir						= #base_dir#/mysqld/#mysqld#/lib/plugin
+port 							= #port#
+user 							= mysql
+bind-address					= 0.0.0.0
+datadir							= #base_dir#/#instance#/var
+innodb_data_home_dir			= #base_dir#/#instance#/var
+innodb_log_group_home_dir		= #base_dir#/#instance#/var
+tmpdir 							= #base_dir#/#instance#/var
+log-error						= #base_dir#/#instance#/err.log
+pid-file						= #base_dir#/#instance#/mysql.pid
+socket							= #base_dir#/#instance#/mysql.sock
+
+slow_query_log 					= 1
+slow_query_log_file 			= slow.log
+long_query_time 				= 0.1
+
+character-set-server 			= utf8
+collation-server 				= utf8_bin
+transaction_isolation 			= REPEATABLE-READ
+
+
+log-bin							= #base_dir#/#instance#/binlog/mysql-bin
+relay-log 						= #base_dir#/#instance#/binlog/mysql-relay
+log-slave-updates 				= true
+server-id						= 1
+gtid_mode						= ON
+enforce-gtid-consistency		= true
+master-info-repository			= TABLE
+relay-log-info-repository		= TABLE
+sync_binlog						= 1
+
+
+innodb_buffer_pool_size 		= 512M
+innodb_buffer_pool_instances 	= 4
+innodb_file_per_table 			= ON
+innodb_flush_log_at_trx_commit 	= 1
+innodb_flush_method				= O_DIRECT
+innodb_buffer_pool_size 		= 128M
+innodb_read_io_threads 			= 2
+innodb_write_io_threads 		= 2
+innodb_log_file_size 			= 512M
+innodb_log_buffer_size 			= 32M
+
+
+[mysqld_safe]
+log-error		= #base_dir#/#instance#/mysql.log
+pid-file		= #base_dir#/#instance#/mysql.pid
