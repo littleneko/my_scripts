@@ -1,6 +1,26 @@
 #!/usr/bin/env bash
 
-FILE_PATH=`readlink -f $0`
+set -e
+
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+echo "=== [INFO] " ${machine}
+
+readlink=readlink
+sed=sed
+
+if [[ $machine == "Mac" ]]; then
+    readlink=greadlink
+    sed=gsed
+fi
+
+FILE_PATH=`$readlink -f $0`
 WORK_DIR=`dirname ${FILE_PATH}`
 echo "=== [INFO] WORK_DIR: $WORK_DIR"
 

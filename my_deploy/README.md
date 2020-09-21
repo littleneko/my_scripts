@@ -27,3 +27,9 @@ https://dev.mysql.com/doc/refman/5.7/en/installing-source-distribution.html
 1. `deploy_mysql.sh debug test 3307`
 
 connect to mysql: `mysql -h127.0.0.1 -uroot -P3307 -p123456`
+
+# For MacOS User
+```
+brew install gnu-sed
+brew install coreutils
+```

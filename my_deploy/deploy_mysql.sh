@@ -1,6 +1,26 @@
 #!/usr/bin/env bash
 
-FILE_PATH=`readlink -f $0`
+set -e
+
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+echo "=== [INFO] " ${machine}
+
+readlink=readlink
+sed=sed
+
+if [[ $machine == "Mac" ]]; then
+    readlink=greadlink
+    sed=gsed
+fi
+
+FILE_PATH=`$readlink -f $0`
 WORK_DIR=`dirname ${FILE_PATH}`
 echo "=== [INFO] WORK_DIR: $WORK_DIR"
 
@@ -61,10 +81,10 @@ cp my.cnf.temp $INSTANCE/my.cnf
 
 echo "=== [INFO] modify my.cnf"
 BASE_DIR=`echo $WORK_DIR|sed 's/\//\\\\\//g'`
-sed -i "s/#base_dir#/$BASE_DIR/g" $INSTANCE/my.cnf
-sed -i "s/#mysqld#/$MYSQLD/g" $INSTANCE/my.cnf
-sed -i "s/#instance#/$INSTANCE/g" $INSTANCE/my.cnf
-sed -i "s/#port#/$PORT/g" $INSTANCE/my.cnf
+$sed -i "s/#base_dir#/$BASE_DIR/g" $INSTANCE/my.cnf
+$sed -i "s/#mysqld#/$MYSQLD/g" $INSTANCE/my.cnf
+$sed -i "s/#instance#/$INSTANCE/g" $INSTANCE/my.cnf
+$sed -i "s/#port#/$PORT/g" $INSTANCE/my.cnf
 if [[ $MODE == "debug" || $MODE == "DEBUG" ]]; then
     sed -i "s/$MYSQLD/$MYSQLD-debug/g" $INSTANCE/my.cnf
 fi
