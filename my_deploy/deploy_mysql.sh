@@ -73,6 +73,6 @@ echo "=== [INFO] start $MYSQLD [$MODE] at $PORT"
 if [[ $MODE == "debug" || $MODE == "DEBUG" ]]; then
     MYSQLD=${MYSQLD}-debug
 fi
-$WORK_DIR/mysqld/$MYSQLD/bin/mysqld_safe --defaults-file=/data1/mysql/$INSTANCE/my.cnf >/dev/null 2>&1 &
+$WORK_DIR/mysqld/$MYSQLD/bin/mysqld_safe --defaults-file=$WORK_DIR/$INSTANCE/my.cnf >/dev/null 2>&1 &
 
 echo "=== [INFO] enjoy!!!"
