@@ -24,7 +24,21 @@ https://dev.mysql.com/doc/refman/5.7/en/installing-source-distribution.html
 1. download the MySQL Community Server Compressed TAR Archive from [oracle](https://downloads.mysql.com/archives/community/), or build yourself.
 1. uncompress the package and mv it to `my_deploy/mysqld`.
 1. `tar -zxvf demo.tgz`
-1. `deploy_mysql.sh test_1 3306`
+1. `deploy_mysql.sh mysql-5.7.31 test_1 3306` (assume your mysql binary dir is *mysql-5.7.31*)
+
+all you folder like this:
+```
+-- README.md
+-- demo.tar.gz
+-- my.cnf.example
+-- myin.sh
+-- mysqld
+  |-- mysql-5.7.31
+-- demo
+-- deploy_mysql.sh
+-- my.cnf.temp
+-- mysql_ctl.sh
+```
 
 connect to mysql: `mysql -h127.0.0.1 -uroot -P3306 -p123456`
 
