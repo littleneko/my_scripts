@@ -28,6 +28,7 @@ transaction_isolation 			= REPEATABLE-READ
 log-bin							= #base_dir#/#instance#/binlog/mysql-bin
 relay-log 						= #base_dir#/#instance#/binlog/mysql-relay
 log-slave-updates 				= true
+binlog-rows-query-log-events    = 1
 server-id						= 1
 gtid_mode						= ON
 enforce-gtid-consistency		= true
