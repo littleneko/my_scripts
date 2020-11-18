@@ -20,13 +20,13 @@ https://dev.mysql.com/doc/refman/5.7/en/installing-source-distribution.html
 
 ### How to use
 
-1. `git clone `
+1. download or clone, and cd to `my_deploy`
 1. download the MySQL Community Server Compressed TAR Archive from [oracle](https://downloads.mysql.com/archives/community/), or build yourself.
-1. uncompress the package and mv it to mysqld.
+1. uncompress the package and mv it to `my_deploy/mysqld`.
 1. `tar -zxvf demo.tgz`
-1. `deploy_mysql.sh debug test 3307`
+1. `deploy_mysql.sh test_1 3306`
 
-connect to mysql: `mysql -h127.0.0.1 -uroot -P3307 -p123456`
+connect to mysql: `mysql -h127.0.0.1 -uroot -P3306 -p123456`
 
 # For MacOS User
 ```
